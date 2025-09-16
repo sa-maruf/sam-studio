@@ -1,11 +1,10 @@
 import Card from './Card';
 
-const Hero = ({ items, onDelete }) => {
+const Hero = ({ items}) => {
     return (
-        <div className="container mx-auto p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div className="container mx-auto min-h-screen p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {items.length > 0 ? (
                 items.map((item) => (
-                    // এখানে onDelete প্রপসটি বাদ দিন
                     <Card key={item.id} item={item} />
                 ))
             ) : (

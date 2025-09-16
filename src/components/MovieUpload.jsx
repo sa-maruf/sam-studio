@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Card from './Card'; // Card কম্পোনেন্ট ইম্পোর্ট করুন
+import Card from './Card';
 
 const MovieUpload = ({ items, onPost, onDelete }) => {
     const [formData, setFormData] = useState({
