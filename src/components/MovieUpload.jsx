@@ -32,8 +32,8 @@ const MovieUpload = ({ items, onPost, onDelete }) => {
     };
 
     return (
-        <div className="container mx-auto p-6 bg-gray-800 rounded-lg shadow-md mt-10">
-            <h2 className="text-3xl text-white font-bold mb-6 text-center">Upload New Item</h2>
+        <div className="container mx-auto p-6 bg-gray-800 rounded-lg shadow-md mt-26">
+            <h2 className="text-3xl text-white font-bold mb-6 text-center">Upload New Movie</h2>
             <form onSubmit={handleSubmit} className="space-y-4">
                 {/* ... form inputs as before ... */}
                 <div>
@@ -102,7 +102,7 @@ const MovieUpload = ({ items, onPost, onDelete }) => {
 
             {/* Show Cards with Delete Button */}
             <div className="mt-10">
-                <h3 className="text-2xl font-bold text-white mb-4">Uploaded Items</h3>
+                <h3 className="text-2xl text-center font-bold text-white mb-4">Uploaded Movies</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                     {items.map((item) => (
                         <Card key={item.id} item={item} onDelete={onDelete} />

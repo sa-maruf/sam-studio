@@ -11,6 +11,7 @@ const Navbar = ({ onSearch, onFilter }) => {
 
     const handleSearch = () => {
         onSearch(searchTerm);
+        setSearchTerm('')
     };
 
     const mobileMenuClick = () => {
@@ -22,11 +23,11 @@ const Navbar = ({ onSearch, onFilter }) => {
     }
 
     return (
-        <nav className="bg-black text-white p-4">
+        <nav className="bg-black text-red-500 p-4 fixed w-full top-0 z-50">
             <div className="max-w-screen-2xl mx-auto flex justify-between items-center">
                 {/* mobile menu icon */}
                 <div className='md:hidden'>
-                    <button onClick={mobileMenuClick} className='text-xl flex'>
+                    <button onClick={mobileMenuClick} className='text-2xl flex'>
                         <div className={`${mobileMenu ? 'hidden' : 'block'}`} ><TiThMenu /></div>
                         <div className={`${mobileMenu ? 'block' : 'hidden'}`}><RxCross2 /></div>
                     </button>
@@ -52,7 +53,7 @@ const Navbar = ({ onSearch, onFilter }) => {
                 </div>
 
                 {/* Des Search */}
-                <div className="hidden md:flex items-center border-1 border-red-500 rounded-md">
+                <div className="hidden md:flex items-center border-1 border-red-500 text-white rounded-md">
                     <input type="text" placeholder="Search movies..." className="p-2  text-white border-1 border-red-500 outline-none rounded-bl-md rounded-tl-md"
                         value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}
                     />
@@ -60,15 +61,26 @@ const Navbar = ({ onSearch, onFilter }) => {
                         <FaSearch />
                     </button>
                 </div>
-                {/* search icon  */}
+                {/* mobile search icon  */}
                 <div className='md:hidden'>
-                    <button onClick={searchIconClick} className='flex'>
+                    <button onClick={searchIconClick} className='flex text-xl'>
                         <div className={`${searchIcon && "block"}`}><FaSearch /></div>
                     </button>
                 </div>
             </div>
+            {/* mobile search  */}
+            <div className={`${searchIcon ? 'block' : 'hidden'}`}>
+                <div className="mt-4 flex md:hidden w-11/12 mx-auto items-center border-1 text-white border-red-500 rounded-md">
+                    <input type="text" placeholder="Search movies..." className="p-2 w-full  text-white border-1 border-red-500 outline-none rounded-bl-md rounded-tl-md"
+                        value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}
+                    />
+                    <button onClick={handleSearch} className="bg-red-500 p-3 h-full border-1 border-red-500 hover:bg-red-600 transition-colors duration-300 cursor-pointer rounded-tr-md rounded-br-md">
+                        <FaSearch />
+                    </button>
+                </div>
+            </div>
             {/* mobile menu  */}
-            <div className={`${mobileMenu ? 'block space-y-1' : 'hidden'}`}>
+            <div className={`${mobileMenu ? 'block space-y-1 mt-4' : 'hidden'}`}>
                 <div>
                     <Link to="/" onClick={() => onFilter('all')} className="hover:text-gray-400 transition-colors duration-300">
                         Home
@@ -88,17 +100,6 @@ const Navbar = ({ onSearch, onFilter }) => {
                     <Link to="/about" className="hover:text-gray-400 transition-colors duration-300">
                         About Us
                     </Link>
-                </div>
-            </div>
-            {/* mobile search  */}
-            <div className={`${searchIcon ? 'block' : 'hidden'}`}>
-                <div className="mt-4 flex md:hidden w-11/12 mx-auto items-center border-1 border-red-500 rounded-md">
-                    <input type="text" placeholder="Search movies..." className="p-2 w-full  text-white border-1 border-red-500 outline-none rounded-bl-md rounded-tl-md"
-                        value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}
-                    />
-                    <button onClick={handleSearch} className="bg-red-500 p-3 h-full border-1 border-red-500 hover:bg-red-600 transition-colors duration-300 cursor-pointer rounded-tr-md rounded-br-md">
-                        <FaSearch />
-                    </button>
                 </div>
             </div>
         </nav>
