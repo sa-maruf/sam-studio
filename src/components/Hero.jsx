@@ -35,7 +35,7 @@ const Hero = ({ items }) => {
             </section>
             {/* Card  */}
             <section className='min-h-screen'>
-                <div className="container mx-auto p-4 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-6">
+                <div className="container mx-auto p-4 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-3 lg:gap-5">
                     {items.length > 0 ? (
                         items.map((item) => (
                             <Card key={item.id} item={item} />
