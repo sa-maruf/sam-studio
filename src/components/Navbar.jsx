@@ -47,7 +47,7 @@ const Navbar = ({ onSearch, onFilter }) => {
                     <Link to="/" onClick={() => onFilter('tv_series')} className="hover:text-gray-400 transition-colors duration-300">
                         Tv Series
                     </Link>
-                    <Link to="/about" className="hover:text-gray-400 transition-colors duration-300">
+                    <Link to="/about" onClick={() => onFilter('about')} className="hover:text-gray-400 transition-colors duration-300">
                         About Us
                     </Link>
                 </div>
