@@ -4,7 +4,7 @@ const Hero = ({ items }) => {
     return (
         <>
             <section className='max-w-screen-2xl px-5 mx-auto'>
-                <div className="carousel w-full md:h-[400px] mt-12 md:mt-16 lg:mt-16">
+                <div className="carousel w-full md:h-[400px] mt-14 md:mt-16 lg:mt-16 border-4 border-[#FDEC09] rounded-md">
                     <div id="item1" className="carousel-item w-full">
                         <img
                             src="https://i.ibb.co.com/Kp4WCHkR/1-0x-OQMdd-XZn723-ZU-p4uskg.jpg"
@@ -27,10 +27,10 @@ const Hero = ({ items }) => {
                     </div>
                 </div>
                 <div className="flex w-full justify-center gap-2 py-2">
-                    <a href="#item1" className="btn btn-xs">1</a>
-                    <a href="#item2" className="btn btn-xs">2</a>
-                    <a href="#item3" className="btn btn-xs">3</a>
-                    <a href="#item4" className="btn btn-xs">4</a>
+                    <a href="#item1" className="btn btn-xs border-red-500 bg-red-500">1</a>
+                    <a href="#item2" className="btn btn-xs border-red-500 bg-red-500">2</a>
+                    <a href="#item3" className="btn btn-xs border-red-500 bg-red-500">3</a>
+                    <a href="#item4" className="btn btn-xs border-red-500 bg-red-500">4</a>
                 </div>
             </section>
             {/* Card  */}

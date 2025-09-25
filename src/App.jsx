@@ -84,7 +84,7 @@ function App() {
 
   return (
     <Router>
-      <div className="bg-[#F0FDF4] min-h-screen text-black">
+      <div className="bg-[#383636] min-h-screen ">
         <Navbar onSearch={handleSearch} onFilter={handleFilter} />
         <main className="py-8">
           <Routes>
