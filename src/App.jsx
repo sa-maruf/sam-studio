@@ -4,14 +4,19 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Footer from './components/Footer';
 import MovieUpload from './components/MovieUpload';
-import './index.css';
 import About from './components/About';
+import Pagination from './components/Pagination';
+import './index.css';
 
 function App() {
   const [items, setItems] = useState([]);
   const [filteredItems, setFilteredItems] = useState([]);
   const [currentFilter, setCurrentFilter] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
+
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 24;
 
   // Initial dummy data
   useEffect(() => {
@@ -40,6 +45,8 @@ function App() {
       { id: 22, name: 'War 2019', description: 'Movie - War is a 2019 Indian Hindi-language action thriller film directed by Siddharth Anand and produced by Aditya Chopra under Yash Raj Films.', poster: 'https://i.ibb.co.com/hJqXkHkF/e6b63e8f450da2c53c822342ee724e26a5cb4bcf58aeccdb2ffd264111a71772.jpg', type: 'movie', downloadLink: 'https://fastdokan.top/views/2XLbOrvgDc' },
       { id: 23, name: 'War 2 2025', description: 'Movie - War 2 is a 2025 Indian Hindi-language action-thriller film directed by Ayan Mukerji and produced by Aditya Chopra under Yash Raj Films.', poster: 'https://i.ibb.co.com/PvNtDJ2X/war-2-review-1.jpg', type: 'movie', downloadLink: 'https://playerwish.com/d/szfii9wdtvmm' },
       { id: 24, name: 'Loki 2023', description: 'Series S 01 - The second season of the American television series Loki, based on Marvel Comics.', poster: 'https://i.ibb.co.com/Q3RQ3BQk/Untitled-design.png', type: 'tv_series', downloadLink: 'https://drive.usercontent.google.com/download?id=1Z03kV5zGr8bHZ86YGpfGeM8PjcdmlfOy&export=download' },
+      { id: 25, name: 'Marvel Zombies 2025', description: 'Series S 01 - Marvel Zombies 2025 is an American adult animated television miniseries created by Bryan Andrews and Zeb Wells for the streaming service Disney.', poster: 'https://i.ibb.co.com/VWNvdxYw/Marvel-Zombies-Box.jpg', type: 'tv_series', downloadLink: 'https://drive.usercontent.google.com/download?id=1u97voJW3Roq1dRoYGiTHwS8ss2mlVyhG&export=download' },
+      { id: 26, name: 'HIT: The Third Case 2025', description: 'Movie - HIT: The Third Case is a 2025 Indian Telugu-language action thriller film[4] written and directed by Sailesh Kolanu.', poster: 'https://i.ibb.co.com/pjNsNmHP/750x450-605717-hit3-7.webp', type: 'movie', downloadLink: 'https://mcloud.guru/s/d94488-b86844-c54448-685878-a55885-48a535-55b585-753844-e44478-a92944-c53595-75a5b5-4565b5-b575f9?token=TTZFVm9CajNlR0w4VG41YnhvbU5vUWJ0L1ZhTmVjOXA0K1FpUlRLeVRtSVN2VndWOTgvVm5aaHlaMm1GSU9CeHhwSFhadHViRFZoNVNhMmJnYWNQTzMzbE11WWl4OXAwVS85SFVacjNXQk09' },
     ];
     setItems(initialData);
   }, []);
@@ -60,16 +67,32 @@ function App() {
     }
 
     setFilteredItems(newFilteredItems);
+    setCurrentPage(1);
   }, [items, currentFilter, searchTerm]);
+
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = filteredItems.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
+
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
 
   const handlePost = (newItem) => {
     setItems([...items, newItem]);
     setCurrentFilter('all');
     setSearchTerm('');
+    setCurrentPage(1);
   };
 
   const handleDelete = (id) => {
     setItems(items.filter(item => item.id !== id));
+    setCurrentPage(1);
   };
 
   const handleFilter = (type) => {
@@ -86,13 +109,23 @@ function App() {
     <Router>
       <div className="bg-[#383636] min-h-screen ">
         <Navbar onSearch={handleSearch} onFilter={handleFilter} />
-        <main className="py-8">
+        <main className="pt-8">
           <Routes>
-            <Route path="/" element={<Hero items={filteredItems} />} />
+            <Route path="/" element={<Hero items={currentItems} />} />
+
             <Route path="/sam.mov.bd/movie-upload"
               element={<MovieUpload items={items} onPost={handlePost} onDelete={handleDelete} />} />
             <Route path="/about" element={<About />} />
           </Routes>
+          {window.location.pathname === '/' && totalPages > 1 && (
+            <div className="flex justify-center mt-4 md:mt-6 mb-12 md:mb-14">
+              <Pagination
+                totalPages={totalPages}
+                currentPage={currentPage}
+                onPageChange={handlePageChange}
+              />
+            </div>
+          )}
         </main>
         <Footer />
       </div>

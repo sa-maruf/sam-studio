@@ -4,7 +4,7 @@ const Hero = ({ items }) => {
     return (
         <>
             <section className='max-w-screen-2xl px-5 mx-auto'>
-                <div className="carousel w-full md:h-[400px] mt-14 md:mt-16 lg:mt-16 border-4 border-[#FDEC09] rounded-md">
+                <div className="carousel w-full md:h-[400px] mt-14 md:mt-16 lg:mt-18 border-3 border-[#FDEC09] rounded-md">
                     <div id="item1" className="carousel-item w-full">
                         <img
                             src="https://i.ibb.co.com/Kp4WCHkR/1-0x-OQMdd-XZn723-ZU-p4uskg.jpg"
@@ -33,9 +33,9 @@ const Hero = ({ items }) => {
                     <a href="#item4" className="btn btn-xs border-red-500 bg-red-500">4</a>
                 </div>
             </section>
-            {/* Card  */}
+            {/* Card Section */}
             <section className='min-h-screen'>
-                <div className="container mx-auto p-4 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-3 lg:gap-5">
+                <div className="container mx-auto p-4 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-3 lg:gap-3">
                     {items.length > 0 ? (
                         items.map((item) => (
                             <Card key={item.id} item={item} />
